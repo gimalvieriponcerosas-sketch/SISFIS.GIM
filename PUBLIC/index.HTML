@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+ <title>SISFIS | Sistema de Informes de Fiscalización</title>
+ <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+ <!-- ENCABEZADO PRINCIPAL -->
+ <header>
+  <h1>SISFIS_GIM</h1>
+  <p>Sistema de Gestión de Informes de Fiscalización</p>
+  <p>Proyecto académico con datos ficticios</p>
+ </header>
+ <!-- MENÚ DE NAVEGACIÓN -->
+ <nav class="navbar">
+  <a href="#inicio">Inicio</a>
+  <a href="#registro">Nuevo informe</a>
+  <a href="#informes">Informes registrados</a>
+  <a href="#vista-previa">Vista previa</a>
+ </nav>
+ <!-- CONTENIDO PRINCIPAL -->
+ <main class="contenedor" id="inicio">
+  <!-- PRESENTACIÓN -->
+  <section class="card">
+   <h2>Bienvenido al sistema SISFIS</h2>
+   <p>
+    Plataforma académica para registrar, consultar,
+    actualizar y eliminar informes de fiscalización
+    mediante servicios API RESTful.
+   </p>
+   <div class="alert alert-info">
+    <strong>Importante:</strong>
+    Todos los datos utilizados en esta práctica
+    son ficticios y tienen fines exclusivamente
+    educativos.
+   </div>
+  </section>
+  <div class="editor-layout">
+  <!-- FORMULARIO DE REGISTRO -->
+  <section class="card" id="registro">
+   <h2>Registro de informe de fiscalización</h2>
+   <p>
+    Complete la información solicitada para
+    registrar un nuevo informe.
+   </p>
+   <form id="form">
+    <!-- DATOS GENERALES -->
+    <h3>1. Datos generales</h3>
+    <div class="form-grid">
+     <div class="form-group">
+      <label for="expediente">
+       Número de expediente *
+      </label>
+      <input
+       type="text"
+       id="expediente"
+       name="expediente"
+       placeholder="Ejemplo: 202600123456"
+       required
+      >
+     </div>
+     <div class="form-group">
+      <label for="empresa">
+       Agente fiscalizado / Empresa *
+      </label>
+      <input
+       type="text"
+       id="empresa"
+       name="empresa"
+       placeholder="Ejemplo: Transportes Demo S.A.C."
+       required
+      >
+     </div>
+     <div class="form-group">
+      <label for="placa">
+       Placa de la unidad vehicular
+      </label>
+      <input
+       type="text"
+       id="placa"
+       name="placa"
+       placeholder="Ejemplo: ABC-123"
+      >
+     </div>
+     <div class="form-group">
+      <label for="supervisor">
+       Supervisor responsable
+      </label>
+      <input
+       type="text"
+       id="supervisor"
+       name="supervisor"
+       value="GIM ALVIERI PONCE ROSAS"
+       placeholder="Nombre del fiscalizador"
+      >
+     </div>
+     <div class="form-group">
+      <label for="registroHidrocarburos">
+       Número de Registro de Hidrocarburos
+      </label>
+      <input
+       type="text"
+       id="registroHidrocarburos"
+       name="registroHidrocarburos"
+       placeholder="Ejemplo: 00000-060-000000"
+      >
+     </div>
+     <div class="form-group">
+      <label for="ruc">
+       Número de RUC
+      </label>
+      <input
+       type="text"
+       id="ruc"
+       name="ruc"
+       inputmode="numeric"
+       placeholder="Ejemplo: 20000000001"
+      >
+     </div>
+    </div>
+    <!-- ANTECEDENTES -->
+    <h3>2. Antecedentes</h3>
+    <div class="form-grid">
+     <div class="form-group">
+      <label for="fecha1">Fecha 1: Resolución o mandato</label>
+      <input type="date" id="fecha1" name="fecha1">
+     </div>
+     <div class="form-group">
+      <label for="fecha2">Fecha 2: Obtención del Registro</label>
+      <input type="date" id="fecha2" name="fecha2">
+     </div>
+     <div class="form-group">
+      <label for="fecha3">Fecha 3: Comunicación de la empresa</label>
+      <input type="date" id="fecha3" name="fecha3">
+     </div>
+     <div class="form-group">
+      <label for="fechaAsignacion">Fecha de asignación</label>
+      <input type="date" id="fechaAsignacion" name="fechaAsignacion">
+     </div>
+     <div class="form-group">
+      <label for="fechaVisita">Fecha de visita de fiscalización</label>
+      <input type="date" id="fechaVisita" name="fechaVisita">
+     </div>
+     <div class="form-group">
+      <label for="fechaConsultaRegistro">Fecha de consulta del Registro</label>
+      <input type="date" id="fechaConsultaRegistro" name="fechaConsultaRegistro">
+     </div>
+     <div class="form-group">
+      <label for="fechaInforme">Fecha de elaboración del informe</label>
+      <input type="date" id="fechaInforme" name="fechaInforme" required>
+     </div>
+    </div>
+    <label for="antecedentes">
+     Descripción de antecedentes (edita el texto completo)
+    </label>
+    <textarea
+     id="antecedentes"
+     name="antecedentes"
+     rows="14"
+     placeholder="Describe aquí los antecedentes del informe..."
+    ></textarea>
+    <!-- DESCRIPCIÓN GENERAL -->
+    <h3>3. Descripción general</h3>
+    <label for="descripcionGeneral">
+     Descripción general del medio de transporte
+    </label>
+    <textarea
+     id="descripcionGeneral"
+     name="descripcionGeneral"
+     rows="4"
+     placeholder="Describe aquí el medio de transporte fiscalizado..."
+    ></textarea>
+    <div class="form-group">
+     <label for="imagenDescripcionGeneral">
+      Imagen de consulta del Registro de Hidrocarburos
+     </label>
+     <input
+      type="file"
+      id="imagenDescripcionGeneral"
+      name="imagenDescripcionGeneral"
+      accept="image/jpeg,image/png,image/webp"
+      aria-describedby="imagenDescripcionAyuda imagenDescripcionEstado"
+     >
+     <small id="imagenDescripcionAyuda">
+      Opcional. JPG, PNG o WebP; se insertará en el Word y se guardará con el informe.
+     </small>
+     <p id="imagenDescripcionEstado" class="preview-status" aria-live="polite">
+      Se usará la imagen incluida en la plantilla.
+     </p>
+     <img
+      id="imagenDescripcionPreview"
+      class="image-preview"
+      alt="Vista previa de la imagen seleccionada"
+      hidden
+     >
+     <button
+      type="button"
+      id="restaurarImagenDescripcion"
+      class="btn btn-secundario"
+      hidden
+     >
+      Usar imagen de la plantilla
+     </button>
+    </div>
+    <!-- TABLA DE VISITA DE FISCALIZACIÓN -->
+    <h3>4. Tabla de la visita de fiscalización</h3>
+    <p>
+     Edita los hallazgos que aparecerán en la tabla de hechos constatados del Word.
+    </p>
+    <p id="tablaFiscalizacionEstado" class="preview-status" aria-live="polite">
+     Cargando los registros de la plantilla...
+    </p>
+    <div id="tablaFiscalizacionEditor"></div>
+    <button
+     type="button"
+     id="agregarObservacion"
+     class="btn btn-secundario"
+     disabled
+    >
+     Agregar fila a la tabla
+    </button>
+    <!-- CONCLUSIONES -->
+    <h3>5. Conclusiones</h3>
+    <label for="conclusiones">
+     Conclusiones de la fiscalización
+    </label>
+    <textarea
+     id="conclusiones"
+     name="conclusiones"
+     rows="6"
+     placeholder="Ingrese las conclusiones del informe..."
+    ></textarea>
+    <!-- RECOMENDACIONES -->
+    <h3>6. Recomendaciones</h3>
+    <label for="recomendaciones">
+     Recomendaciones finales
+    </label>
+    <textarea
+     id="recomendaciones"
+     name="recomendaciones"
+     rows="6"
+     placeholder="Ingrese las recomendaciones correspondientes..."
+    ></textarea>
+    <!-- BOTÓN DE GUARDADO -->
+    <div class="acciones">
+     <button
+      type="submit"
+      class="btn btn-guardar"
+      disabled
+     >
+      Guardar informe
+     </button>
+     <button
+      type="button"
+      id="vistaPreviaWord"
+      class="btn btn-secundario"
+      disabled
+     >
+      Vista previa Word
+     </button>
+     <button
+      type="button"
+      id="descargarWord"
+      class="btn btn-secundario"
+      disabled
+     >
+      Descargar Word
+     </button>
+     <button
+      type="reset"
+      class="btn btn-secundario"
+     >
+      Limpiar formulario
+     </button>
+    </div>
+   </form>
+  </section>
+  <!-- VISTA PREVIA -->
+  <section class="card" id="vista-previa">
+   <h2>Vista previa del informe</h2>
+   <p>
+    El documento se actualiza al cambiar los datos del formulario.
+   </p>
+   <p id="wordPreviewStatus" class="preview-status" aria-live="polite">
+    Cargando el informe para que puedas empezar a editarlo.
+   </p>
+   <div id="wordPreview" class="word-preview">
+   </div>
+  </section>
+  </div>
+  <!-- INFORMES REGISTRADOS -->
+  <section class="card" id="informes">
+   <h2>Informes registrados</h2>
+   <p>
+    En esta sección se muestran los informes
+    almacenados en la base de datos JSON.
+   </p>
+   <div id="lista">
+    Cargando informes...
+   </div>
+  </section>
+ </main>
+ <!-- PIE DE PÁGINA -->
+ <footer>
+  <p>
+   SISFIS_GIM - Sistema de Informes de Fiscalización
+  </p>
+  <p>
+   Proyecto académico de desarrollo de API RESTful
+  </p>
+  <p>
+   Datos ficticios para fines educativos
+  </p>
+ </footer>
+ <!-- JAVASCRIPT -->
+ <script src="/vendor/jszip/jszip.min.js"></script>
+ <script src="/vendor/docx-preview/docx-preview.min.js"></script>
+ <script src="app.js"></script>
+</body>
+</html>
